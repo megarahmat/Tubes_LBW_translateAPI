@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\getLanguagesGoogleAPI;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,14 +14,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('home',[
-        "title" => "Home"
-    ]);
-});
+// Route::get('/', function () {
+//     return view('home',[
+//         "title" => "Home"
+//     ]);
+// });
 
 Route::get('/about', function () {
     return view('about',[
         "title" => "About"
     ]);
 });
+
+Route::get('/',[getLanguagesGoogleAPI::class,'index']);
+
+Route::post('/getTranslate', [getLanguagesGoogleAPI::class,'translateBing']);
