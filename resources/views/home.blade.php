@@ -30,25 +30,10 @@
                     </option>
                 @endforeach
             </select>
-            <div class="d-flex justify-content-xl-start">
-                <div class="p-2">
-                    <textarea class="form-control " id="googleResult" rows="5" placeholder="Google Translation" readonly></textarea>
 
-                </div>
-                <div class="p-2">
-                    
-                    <textarea class="form-control " id="microsoftResult" rows="5" placeholder="Microsft Translation" readonly></textarea>
-                </div>
-                <div class="p-2">
-                    <textarea class="form-control " id="textTranslatorResult" rows="5" placeholder="Text Translator Translation" readonly></textarea>
-
-                </div>
-              </div>    
-
-
-            
-            
-            
+            <textarea class="form-control w-50 p-3" id="googleResult" rows="3" placeholder="Google Translation" readonly></textarea>
+            <textarea class="form-control w-50 p-3" id="microsoftResult" rows="3" placeholder="Microsft Translation" readonly></textarea>
+            <textarea class="form-control w-50 p-3" id="textTranslatorResult" rows="3" placeholder="Text Translator Translation" readonly></textarea>
         </div>
         
         <input  type="submit" class="btn btn-primary" id="btn_sumbit" value="Transalte">
