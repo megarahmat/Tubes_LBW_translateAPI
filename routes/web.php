@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\getLanguagesGoogleAPI;
+use App\Http\Controllers\translator;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,6 +27,10 @@ Route::get('/about', function () {
     ]);
 });
 
-Route::get('/',[getLanguagesGoogleAPI::class,'index']);
+//Route::get('/',[getLanguagesGoogleAPI::class,'index']);
 
-Route::post('/getTranslate', [getLanguagesGoogleAPI::class,'translateBing']);
+Route::get('/',[translator::class,'getLanguage']);
+
+//Route::post('/getTranslate', [getLanguagesGoogleAPI::class,'translateBing']);
+
+Route::post('/getTranslate',[translator::class,'translate']);
