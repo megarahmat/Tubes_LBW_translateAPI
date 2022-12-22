@@ -27,10 +27,10 @@ Route::get('/about', function () {
     ]);
 });
 
-//Route::get('/',[getLanguagesGoogleAPI::class,'index']);
+// Route::get('/',[getLanguagesGoogleAPI::class,'index']);
 
 Route::get('/',[translator::class,'getLanguage']);
 
-//Route::post('/getTranslate', [getLanguagesGoogleAPI::class,'translateBing']);
+// Route::post('/getTranslate', [getLanguagesGoogleAPI::class,'translate']);
 
-Route::post('/getTranslate',[translator::class,'translate']);
+Route::post('/getTranslate',[translator::class,'postTranslate']);

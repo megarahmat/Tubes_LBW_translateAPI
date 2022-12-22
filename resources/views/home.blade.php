@@ -33,10 +33,15 @@
 
             <textarea class="form-control w-50 p-3" id="googleResult" rows="3" placeholder="Google Translation" readonly></textarea>
             <textarea class="form-control w-50 p-3" id="microsoftResult" rows="3" placeholder="Microsft Translation" readonly></textarea>
-            <textarea class="form-control w-50 p-3" id="textTranslatorResult" rows="3" placeholder="Text Translator Translation" readonly></textarea>
+            <textarea class="form-control w-50 p-3" id="textTranslatorResult" rows="3" placeholder="Text Translator Translation" readonly>
+                @if (isset($translatedText))
+                    {{$translatedText }}
+                @endif
+
+            </textarea>
         </div>
         
-        <input  type="submit" class="btn btn-primary" id="btn_sumbit" value="Transalte">
+        <input  type="submit" class="btn btn-primary" id="btn_sumbit" value="Translate">
     </form>  
 
     
