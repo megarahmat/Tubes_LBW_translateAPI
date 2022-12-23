@@ -3,7 +3,7 @@
 @section('container')
     <h1>LBW Transaltor</h1>
     
-    <form action="/getTranslate" method="POST">
+    <form action="/" method="POST">
         @csrf
         <div class="mb-3">
             <label for="exampleFormControlTextarea1" class="form-label">Language</label>

@@ -33,4 +33,4 @@ Route::get('/',[translator::class,'getLanguage']);
 
 // Route::post('/getTranslate', [getLanguagesGoogleAPI::class,'translate']);
 
-Route::post('/getTranslate',[translator::class,'postTranslate']);
+Route::post('/',[translator::class,'postTranslate']);
