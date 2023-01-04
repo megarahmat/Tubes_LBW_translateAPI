@@ -93,10 +93,35 @@ class translator extends Controller
         // dd($testData);
 
 
-        
+        // MyMemoryAPI
+        $curlM = curl_init();
+
+        curl_setopt_array($curlM, [
+	    CURLOPT_URL => 'https://translated-mymemory---translation-memory.p.rapidapi.com/get?langpair='.$inputText->input_bahasa.'%7C'.$inputText->target_bahasa .'&q='. $inputText->input_text .'&mt=1&onlyprivate=0&de=a%40b.c',
+	    CURLOPT_RETURNTRANSFER => true,
+	    CURLOPT_FOLLOWLOCATION => true,
+	    CURLOPT_ENCODING => "",
+	    CURLOPT_MAXREDIRS => 10,
+	    CURLOPT_TIMEOUT => 30,
+	    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+	    CURLOPT_CUSTOMREQUEST => "GET",
+	    CURLOPT_HTTPHEADER => [
+		"X-RapidAPI-Host: translated-mymemory---translation-memory.p.rapidapi.com",
+		"X-RapidAPI-Key: 164c71065amshbaf5e897770d153p1ed023jsn141616eedc5b"
+	],
+]);
+
+        $responseM = curl_exec($curlM);
+        $errM = curl_error($curlM);
+
+        curl_close($curlM);
+
+	        $hasilTranslate = json_decode($responseM, true);
         
 
+        
 
+            //dd ($responseM);
 
 
         $bahasa = Cache::get('api-text-translate');
@@ -105,6 +130,7 @@ class translator extends Controller
             'title'=>'Home',
             'translatedText' => $data['data']['translatedText'],
             'translatedTextGoogle' => $responseGoogleDecoded['data']['translations'][0]['translatedText'],
+            'translatedMyMemory' => $hasilTranslate['responseData']['translatedText'],
             'bahasa' => $bahasa
         ]);        
     }
