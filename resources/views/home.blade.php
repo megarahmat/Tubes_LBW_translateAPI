@@ -50,8 +50,8 @@
                 <div class="p-2" >
                     <h6>Text Translator</h6>
                     <div class="p-2 w-50 border border-secondary rounded" style="height: 100px">
-                        @if (isset($translatedTextGoogle))
-                            {{$translatedTextGoogle }}
+                        @if (isset($translatedText))
+                            {{$translatedText }}
                         @endif
                     </div>
                 </div>
@@ -66,9 +66,11 @@
                 </div>
 
                 <div class="p-2 ">
-                    <h6>Microsoft Bing Translator</h6>
+                    <h6>MyMemory Translator</h6>
                     <div class="p-2 w-50 border border-secondary rounded" style="height: 100px">
-                        
+                        @if (isset($translatedMyMemory))
+                            {{$translatedMyMemory }}
+                        @endif
                     </div>
                 </div>
             </div>
