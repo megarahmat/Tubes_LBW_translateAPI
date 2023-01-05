@@ -34,7 +34,6 @@ class translator extends Controller
     public function postTranslate(Request $inputText){
         
         //post translate text translator
-
         $curl = curl_init();
         
         curl_setopt_array($curl, [
@@ -54,10 +53,10 @@ class translator extends Controller
             ],
         ]);
 
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER,TRUE);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER,TRUE);//untuk mengatur kembalian curl menjadi string 
 
         $response = curl_exec($curl);
-        $data = json_decode($response,true);
+        $data = json_decode($response,true);//mengubah string menjadi array
         curl_error($curl);
         curl_close($curl);
 
@@ -72,12 +71,10 @@ class translator extends Controller
         $url = 'https://www.googleapis.com/language/translate/v2?key=' . $apiKey . '&q=' . rawurlencode($text) . '&source=' . rawurlencode($source) . '&target=' . rawurlencode($target);
 
         $handle = curl_init($url);
-        curl_setopt($handle, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($handle, CURLOPT_RETURNTRANSFER, true); //untuk mengatur kembalian curl menjadi string
         $responseGoogle = curl_exec($handle);                 
-        $responseGoogleDecoded = json_decode($responseGoogle, true);
+        $responseGoogleDecoded = json_decode($responseGoogle, true);//mengubah string menjadi array
         curl_close($handle);
-
-        
 
         //method get laguage google
 
@@ -85,7 +82,7 @@ class translator extends Controller
         // $url = 'https://www.googleapis.com/language/translate/v2/languages?key=' . $apiKey;
 
         // $handle = curl_init($url);
-        // curl_setopt($handle, CURLOPT_RETURNTRANSFER, true);     //We want the result to be saved into variable, not printed out
+        // curl_setopt($handle, CURLOPT_RETURNTRANSFER, true);
         // $testResponse = curl_exec($handle);                         
         // curl_close($handle);
 
@@ -106,8 +103,8 @@ class translator extends Controller
 	    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
 	    CURLOPT_CUSTOMREQUEST => "GET",
 	    CURLOPT_HTTPHEADER => [
-		"X-RapidAPI-Host: translated-mymemory---translation-memory.p.rapidapi.com",
-		"X-RapidAPI-Key: 164c71065amshbaf5e897770d153p1ed023jsn141616eedc5b"
+                "X-RapidAPI-Host: translated-mymemory---translation-memory.p.rapidapi.com",
+                "X-RapidAPI-Key: 164c71065amshbaf5e897770d153p1ed023jsn141616eedc5b"
             ],
         ]);
 
@@ -116,17 +113,17 @@ class translator extends Controller
 
         curl_close($curlM);
 
-	    $hasilTranslate = json_decode($responseM, true);
-            dd ($hasilTranslate);
+	    $hasilTranslate = json_decode($responseM, true);//mengubah string menjadi array
+        // dd ($data);
         $bahasa = Cache::get('api-text-translate');
 
-        // return view('home',[
-        //     'title'=>'Home',
-        //     'translatedText' => $data['data']['translatedText'],
-        //     'translatedTextGoogle' => $responseGoogleDecoded['data']['translations'][0]['translatedText'],
-        //     'translatedMyMemory' => $hasilTranslate['responseData']['translatedText'],
-        //     'bahasa' => $bahasa
-        // ]);        
+        return view('home',[
+            'title'=>'Home',
+            'translatedText' => $data['data']['translatedText'],
+            'translatedTextGoogle' => $responseGoogleDecoded['data']['translations'][0]['translatedText'],
+            'translatedMyMemory' => $hasilTranslate['responseData']['translatedText'],
+            'bahasa' => $bahasa
+        ]);        
     }
 
     
